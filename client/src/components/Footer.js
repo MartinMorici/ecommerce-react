@@ -79,9 +79,10 @@ const FooterPage = styled.footer`
 
 const FooterContainer = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  
+  justify-items: center;
   padding: 2rem 0rem;
   color: white;
 
