@@ -7,8 +7,8 @@ import {
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Product from './pages/Home';
-import Category from './pages/Home';
+import Product from './pages/Product';
+import Category from './pages/Category';
 import './App.css'
 
 const SharedLayout = () => {
