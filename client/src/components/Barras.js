@@ -1,18 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Barras({ rotado }) {
+function Barras({ rotado, derecha }) {
   return (
-    <Barra className={rotado}>
-      <div className='mid'></div>
-      <div className='full'></div>
-      <div className='short'></div>
+    <Barra>
+      <div className={`${rotado}  ${derecha}`}>
+        <div className='mid'></div>
+        <div className='full'></div>
+        <div className='short'></div>
+      </div>
     </Barra>
   );
 }
 
 const Barra = styled.div`
   width: 13.3vw;
+  .rotado {
+    transform: scaleX(-1);
+  }
+  .derecha {
+
+    width: 13.3vw;
+    position: absolute;
+    right: 0;
+    top: 45px;
+  }
   div {
     height: 2px;
   }

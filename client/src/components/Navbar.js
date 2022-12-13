@@ -51,7 +51,9 @@ const Header = styled.header`
 `;
 
 export const Container = styled.div`
-  padding: 0 10vw;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
 `;
 
 const HeaderContainer = styled.div`
