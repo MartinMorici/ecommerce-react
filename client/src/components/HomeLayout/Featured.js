@@ -7,56 +7,68 @@ import Barras from './Barras';
 function Featured() {
   return (
     <>
-        <Title>
-            <Barras/>
-            <h1>This week's <span>newest</span> and <br /> <span>best selling</span> items</h1>
-            <Barras rotado={'rotado'}/>
-        </Title>
-        <Container>
-          <GridFeatured>
-            <div className='featured1'>
-              <img src='../../featured1.jpg' alt='' />
-              <Price>
-                <span>$128,96</span>
-                <Button texto={'BUY NOW'} />
-              </Price>
-            </div>
-            <div className='featured2'>
-              <img src='../../featured2.jpg' alt='' />
-              <Price>
-                <span>$90.00</span>
-                <Button texto={'BUY NOW'} />
-              </Price>
-            </div>
-            <div className='featured3'>
-              <img src='../../featured3.jpg' alt='' />
-              <Price>
-                <span>$96.00</span>
-                <Button texto={'BUY NOW'} />
-              </Price>
-            </div>
-          </GridFeatured>
-        </Container>
+      <Title>
+        <Barras />
+        <h3>
+          This week's <span>newest</span> and <br className='brFeatured' />{' '}
+          <span>best selling</span> items
+        </h3>
+        <Barras rotado={'rotado'} />
+      </Title>
+      <Container>
+        <GridFeatured>
+          <div className='featured1'>
+            <img src='../../featured1.jpg' alt='' />
+            <Price>
+              <span>$128,96</span>
+              <Button texto={'BUY NOW'} />
+            </Price>
+          </div>
+          <div className='featured2'>
+            <img src='../../featured2.jpg' alt='' />
+            <Price>
+              <span>$90.00</span>
+              <Button texto={'BUY NOW'} />
+            </Price>
+          </div>
+          <div className='featured3'>
+            <img src='../../featured3.jpg' alt='' />
+            <Price>
+              <span>$96.00</span>
+              <Button texto={'BUY NOW'} />
+            </Price>
+          </div>
+        </GridFeatured>
+      </Container>
     </>
   );
 }
 
 const Title = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin: 10rem 0rem 7rem 0rem;
-h1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10rem 0rem 7rem 0rem;
+  h3 {
     font-family: 'Lora', serif;
     text-align: center;
     font-weight: 500;
     font-size: 60px;
-    span{
-        font-weight: 800;
-        font-style: italic;
+    span {
+      font-weight: 800;
+      font-style: italic;
     }
-}
-`
+  }
+  @media (max-width: 600px) {
+    margin: 6rem 0rem 3rem 0rem;
+    .brFeatured {
+      display: none;
+    }
+    h3 {
+      font-size: 30px;
+    }
+  }
+`;
 
 const GridFeatured = styled.section`
   display: grid;
@@ -66,6 +78,10 @@ const GridFeatured = styled.section`
   padding: 0 1rem;
   margin-bottom: 8rem;
 
+  @media (max-width: 930px) {
+    display: flex;
+    flex-direction: column;
+  }
   img {
     object-fit: cover;
     width: 100%;
@@ -79,10 +95,9 @@ const GridFeatured = styled.section`
     img {
       height: 100%;
     }
-    span{
-        font-size: 30px;
+    span {
+      font-size: 30px;
     }
-
   }
   .featured2 {
     position: relative;
@@ -98,6 +113,18 @@ const GridFeatured = styled.section`
   .featured3 {
     button {
       height: 40px;
+    }
+  }
+  @media (max-width: 600px) {
+    .featured1 {
+      span {
+        font-size: 20px;
+      }
+    }
+    button {
+      height: 20px;
+      width: 150px;
+      font-size: 16px;
     }
   }
 `;

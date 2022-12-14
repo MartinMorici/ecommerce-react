@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 function Barras({ rotado, derecha }) {
   return (
-    <Barra>
+    <Barra className='contenedorBarras'>
       <div className={`${rotado}  ${derecha}`}>
         <div className='mid'></div>
         <div className='full'></div>
@@ -20,7 +20,6 @@ const Barra = styled.div`
     transform: scaleX(-1);
   }
   .derecha {
-
     width: 13.3vw;
     position: absolute;
     right: 0;

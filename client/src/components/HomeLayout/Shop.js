@@ -46,6 +46,12 @@ const ShopContainer = styled.section`
   background-color: #151a1e;
   margin-bottom: 3rem;
   padding: 0rem 1rem;
+  @media (max-width: 440px) {
+    padding: 0rem;
+    .texto {
+      padding: 1rem;
+    }
+  }
   h3 {
     font-family: 'Lora', serif;
     font-weight: 400;
@@ -53,6 +59,9 @@ const ShopContainer = styled.section`
       font-style: italic;
       font-weight: 600;
     }
+  }
+  @media (max-width: 1160px) {
+    height: auto;
   }
 `;
 const FlexContainer = styled.div`
@@ -82,6 +91,39 @@ const FlexContainer = styled.div`
     border-left: 1px solid grey;
     letter-spacing: 0.5px;
     line-height: 1.5;
+  }
+  @media (max-width: 1160px) {
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    .texto {
+      width: 100%;
+    }
+    article {
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+      .bottom {
+        bottom: 0px;
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    h3 {
+      font-size: 32px;
+    }
+    p {
+      font-size: 16px;
+    }
+    article {
+      img {
+        width: 90%;
+      }
+      .bottom {
+        left: 15px;
+      }
+    }
   }
 `;
 

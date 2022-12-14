@@ -62,7 +62,10 @@ function Footer() {
           </Logo>
 
           <div>
-            Desarrollado por <a href='https://www.linkedin.com/in/martinmorici/'>Martín Morici</a>
+            Desarrollado por{' '}
+            <a href='https://www.linkedin.com/in/martinmorici/'>
+              Martín Morici
+            </a>
           </div>
         </FinalFooter>
       </Container>
@@ -75,17 +78,29 @@ const FooterPage = styled.footer`
   width: 100%;
   font-family: 'Open Sans', sans-serif;
   padding: 3rem 0rem;
+  @media (max-width: 550px) {
+    padding: 0rem;
+  }
 `;
 
 const FooterContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  
+  grid-template-columns: repeat(4, 1fr);
+
   justify-items: center;
   padding: 2rem 0rem;
   color: white;
 
+  @media (max-width: 550px) {
+    padding: 0rem 1rem;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    .footerTitle {
+      margin-top: 3rem;
+      margin-bottom: 0rem;
+    }
+  }
   li {
     list-style: none;
     margin-bottom: 1rem;
@@ -114,6 +129,11 @@ const FinalFooter = styled.div`
   a {
     text-decoration: underline;
     color: white;
+  }
+  @media (max-width: 550px) {
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 3rem;
   }
 `;
 

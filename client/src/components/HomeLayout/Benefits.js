@@ -12,14 +12,19 @@ function Benefits() {
       <Container>
         <Texto>
           <h2>
-            <span className='italica'>Benefits</span> of choosing <br /> our
-            services
+            <span className='italica'>Benefits</span> of choosing{' '}
+            <br className='brH2' /> our services
           </h2>
           <p>
             We provide free shipping anywhere as <br /> long as you spend more
             than $50.
           </p>
-          <Barras rotado='rotado' />
+          <div className='oculto-mobile'>
+            <Barras rotado='rotado' />
+          </div>
+          <div className='oculto'>
+            <Barras />
+          </div>
         </Texto>
         <Cards>
           <article>
@@ -39,7 +44,7 @@ function Benefits() {
               <br /> to send your goods in less
               <br /> than 1 day to your home.
             </p>
-            <div className=' barra medio'></div>
+            <div className='barra medio'></div>
           </article>
           <article>
             <LockIcon />
@@ -59,6 +64,9 @@ function Benefits() {
 const BenefitsContainer = styled.section`
   margin: 8rem 0rem 10rem 0rem;
   padding: 0rem 1rem;
+  .oculto {
+    display: none;
+  }
   h2 {
     font-family: 'Lora', serif;
     font-weight: 500;
@@ -70,13 +78,43 @@ const BenefitsContainer = styled.section`
   .rotado {
     transform: scaleX(-1);
   }
+  @media (max-width: 880px) {
+    margin: 3rem 0rem 10rem 0rem;
+  }
 `;
 const Texto = styled.div`
   display: flex;
   gap: 6rem;
   align-items: center;
+  @media (max-width: 940px) {
+    flex-direction: column;
+    gap: 1rem;
+    p {
+      align-self: flex-start;
+    }
+    .barra {
+      align-self: flex-end;
+    }
+    .oculto-mobile {
+      display: none;
+    }
+    .oculto {
+      display: block;
+      align-self: flex-start;
+    }
+  }
   h2 {
     font-size: 60px;
+    @media (max-width: 940px) {
+      font-size: 44px;
+      .brH2 {
+        display: none;
+      }
+    }
+    @media (max-width: 600px) {
+      font-size: 32px;
+      margin-top: 2rem;
+    }
   }
   p {
     color: #4e4f50;
@@ -85,6 +123,13 @@ const Texto = styled.div`
     font-size: 20px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
+    @media (max-width: 600px) {
+      padding: 1rem 0rem 1rem 1rem;
+      font-size: 18px;
+      br {
+        display: none;
+      }
+    }
   }
 `;
 
@@ -92,6 +137,21 @@ const Cards = styled.section`
   display: flex;
   margin-top: 4rem;
   gap: 10rem;
+  @media (max-width: 1260px) {
+    gap: 0;
+    justify-content: space-between;
+  }
+  @media (max-width: 946px) {
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+  @media (max-width: 660px) {
+    align-items: flex-start;
+    flex-direction: column;
+    article {
+      width: 300px;
+    }
+  }
   article {
     position: relative;
     padding: 0rem 2rem;
