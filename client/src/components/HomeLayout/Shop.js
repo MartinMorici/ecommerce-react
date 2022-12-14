@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container } from './Navbar';
+import { Container } from '../Navbar';
 import Barras from './Barras';
-import Button from './Button';
+import Button from '../Button';
 
 function Shop() {
   return (
@@ -41,10 +41,11 @@ const ShopContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  height: 843px;
   color: white;
   background-color: #151a1e;
   margin-bottom: 3rem;
+  padding: 0rem 1rem;
   h3 {
     font-family: 'Lora', serif;
     font-weight: 400;

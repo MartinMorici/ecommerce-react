@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container } from '../components/Navbar';
-import Benefits from '../components/Benefits';
-import Barras from '../components/Barras';
+import Benefits from '../components/HomeLayout/Benefits';
+import Barras from '../components/HomeLayout/Barras';
+import Shop from '../components/HomeLayout/Shop';
+import Featured from '../components/HomeLayout/Featured';
 import Button from '../components/Button';
-import Shop from '../components/Shop';
-
 
 function Home() {
   return (
@@ -20,39 +20,50 @@ function Home() {
             trends that make you look <br />
             even cooler.
           </p>
-          <Button texto='Explore More'/>
-     
+          <Button texto='Explore More' />
         </HeroWrapper>
       </ContainerHero>
 
-      <section>
+      <Section>
         <PartnersTitle>
           <Barras />
           <h2>Trusted partners</h2>
           <Barras rotado={'rotado'} />
         </PartnersTitle>
+        
         <Banner>
           <PartnersContainer>
             <img src='../partners/chanel.svg' alt='' />
             <img src='../partners/gucci.svg' alt='' />
             <img src='../partners/louis-vuitton.svg' alt='' />
-            <img className='blanco' src='../partners/christian-dior.svg' alt='' />
+            <img
+              className='blanco'
+              src='../partners/christian-dior.svg'
+              alt=''
+            />
           </PartnersContainer>
         </Banner>
-      </section>
+      </Section>
 
-      <Benefits/>
-      <Shop/>
+      <Benefits />
+      <Shop />
+      <Featured />
     </main>
   );
 }
 
+const Section = styled.section`
+  height: 409px;
+  overflow: hidden;
+  position: relative;
+`;
+
 const ContainerHero = styled.div`
-    padding: 0 10.3vw;
-`
+  padding: 0 10.3vw;
+`;
 
 const HeroWrapper = styled.section`
-height: calc(100vh - 82px );
+  height: calc(100vh - 82px);
 
   display: flex;
   justify-content: center;
@@ -63,10 +74,12 @@ height: calc(100vh - 82px );
   background-position: right;
   background-size: 55%;
   position: relative;
+
   h2 {
     font-family: 'Lora', serif;
     font-weight: 400;
-    font-size: 6vw;
+    font-size: 5.9vw;
+
     span {
       color: white;
     }
@@ -84,15 +97,13 @@ height: calc(100vh - 82px );
   }
 `;
 
-
-
 const PartnersTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: 'Lora', serif;
   margin-top: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
   h2 {
     font-size: 60px;
     font-weight: 500;
@@ -120,6 +131,11 @@ const PartnersContainer = styled.div`
   }
   background-color: #151a1e;
 `;
-const Banner = styled.div``;
+const Banner = styled.div`
+  transform: rotate(-1.5deg);
+  width: 101%;
+  position: relative;
+  left: -6px;
+`;
 
 export default Home;

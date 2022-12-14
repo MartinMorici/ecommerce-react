@@ -15,6 +15,7 @@ function Barras({ rotado, derecha }) {
 
 const Barra = styled.div`
   width: 13.3vw;
+  height: 60px;
   .rotado {
     transform: scaleX(-1);
   }

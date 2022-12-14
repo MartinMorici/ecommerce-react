@@ -13,7 +13,7 @@ function Navbar() {
           <Link to={'/'}>
             <Logo>
               <BrightnessHighIcon />
-              <h1>Sunset</h1>
+              <h1>Arrival</h1>
             </Logo>
           </Link>
           <Nav>
@@ -47,7 +47,7 @@ function Navbar() {
 
 const Header = styled.header`
   font-family: 'Open Sans', sans-serif;
-  padding: 1.5rem 0rem;
+  padding: 1.5rem 1rem;
 `;
 
 export const Container = styled.div`

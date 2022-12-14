@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Barras from './Barras';
-import { Container } from './Navbar';
+import { Container } from '../Navbar';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import LockIcon from '@mui/icons-material/Lock';
@@ -57,7 +57,8 @@ function Benefits() {
 }
 
 const BenefitsContainer = styled.section`
-  margin: 8rem 0rem;
+  margin: 8rem 0rem 10rem 0rem;
+  padding: 0rem 1rem;
   h2 {
     font-family: 'Lora', serif;
     font-weight: 500;
