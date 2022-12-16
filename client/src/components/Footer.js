@@ -58,11 +58,11 @@ function Footer() {
         <FinalFooter>
           <Logo>
             <BrightnessHighIcon />
-            <div>Sunset</div>
+            <div>Arrival</div>
           </Logo>
 
           <div>
-            Desarrollado por{' '}
+            Desarrollado por
             <a href='https://www.linkedin.com/in/martinmorici/'>
               Martín Morici
             </a>
