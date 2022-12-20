@@ -3,6 +3,7 @@ import {
   RouterProvider,
   Route,
   Outlet
+
 } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -10,6 +11,7 @@ import Home from './pages/Home';
 import Product from './pages/Product';
 import Category from './pages/Category';
 import './App.css'
+import { AppProvider } from './context/Context';
 
 const SharedLayout = () => {
   return (
@@ -46,7 +48,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className='App'>
-      <RouterProvider router={router} />
+      <AppProvider>
+        <RouterProvider router={router} />
+      </AppProvider>
     </div>
   );
 }

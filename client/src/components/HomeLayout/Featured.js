@@ -4,40 +4,30 @@ import { Container } from '../Navbar';
 import Button from '../Button';
 import Barras from './Barras';
 
-function Featured() {
+function Featured({featured}) {
   return (
     <>
       <Title>
         <Barras />
         <h3>
-          This week's <span>newest</span> and <br className='brFeatured' />{' '}
+          This week's <span>newest</span> and <br className='brFeatured' />
           <span>best selling</span> items
         </h3>
         <Barras rotado={'rotado'} />
       </Title>
       <Container>
         <GridFeatured>
-          <div className='featured1'>
-            <img src='../../featured1.jpg' alt='' />
-            <Price>
-              <span>$128,96</span>
-              <Button texto={'BUY NOW'} />
-            </Price>
-          </div>
-          <div className='featured2'>
-            <img src='../../featured2.jpg' alt='' />
-            <Price>
-              <span>$90.00</span>
-              <Button texto={'BUY NOW'} />
-            </Price>
-          </div>
-          <div className='featured3'>
-            <img src='../../featured3.jpg' alt='' />
-            <Price>
-              <span>$96.00</span>
-              <Button texto={'BUY NOW'} />
-            </Price>
-          </div>
+          {
+          featured.map((product,index) => (
+            <div key={product.id} className={`featured`+(index+1)}>
+              <img src={process.env.REACT_APP_UPLOAD_URL+product.attributes.img.data.attributes.url} alt='' />
+              <Price>
+                <span>${product.attributes.price}</span>
+                <Button texto={'BUY NOW'} />
+              </Price>
+            </div>
+          ))
+          }
         </GridFeatured>
       </Container>
     </>

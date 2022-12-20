@@ -27,8 +27,8 @@ function Navbar() {
               <Link to={'/category/women'}>
                 <li>Women</li>
               </Link>
-              <Link to={'/category/children'}>
-                <li>Children</li>
+              <Link to={'/category/accessories'}>
+                <li>Accessories</li>
               </Link>
             </ul>
           </Nav>
