@@ -24,7 +24,6 @@ function AppProvider({ children }) {
         .filter((product) => product.attributes.newArrival === true)
         .slice(0, 3);
       setProducts(data.data);
-      console.log(data.data);
       setFeatured(featured);
       setIsLoading(false);
     } catch (error) {
