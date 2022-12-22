@@ -1,13 +1,13 @@
 import Filtros from '../components/Filtros';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from '../components/Navbar';
 import { useGlobalContext } from '../context/Context';
 
 function Category() {
   const { id } = useParams();
-  const { products,isLoading } = useGlobalContext();
+  const { products, isLoading } = useGlobalContext();
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
@@ -15,8 +15,8 @@ function Category() {
       (product) =>
         id === product.attributes?.categories?.data[0]?.attributes?.title
     );
-    setFilteredProducts(productos)
-  }, [isLoading,id,products]);
+    setFilteredProducts(productos);
+  }, [isLoading, id, products]);
 
   return (
     <main>
@@ -24,22 +24,38 @@ function Category() {
         <CategoryWrapper>
           <Filtros products={products} id={id}></Filtros>
           <Productos>
-            <img className='banner-category' src={`../banner-${id}.jpg`} alt='' />
+            <img
+              className='banner-category'
+              src={`../banner-${id}.jpg`}
+              alt=''
+            />
             <div className='productos'>
               {filteredProducts.map((product) => (
-                <div key={product.id}>
-                  <img
-                    src={
-                      process.env.REACT_APP_UPLOAD_URL +
-                      product.attributes.img.data.attributes.url
-                    }
-                    alt={product.attributes.title}
-                  />
-                  <h3>{product.attributes.title}</h3>
-                  <span>
-                    <span>${product.attributes.price}</span>
-                  </span>
-                </div>
+                <Link key={product.id} to={`/product/${product.id}`}>
+                  <div >
+                    <img
+                      src={
+                        process.env.REACT_APP_UPLOAD_URL +
+                        product.attributes.img.data.attributes.url
+                      }
+                      onMouseOver={(e) =>
+                        (e.currentTarget.src =
+                          process.env.REACT_APP_UPLOAD_URL +
+                          product.attributes.img2.data.attributes.url)
+                      }
+                      onMouseOut={(e) =>
+                        (e.currentTarget.src =
+                          process.env.REACT_APP_UPLOAD_URL +
+                          product.attributes.img.data.attributes.url)
+                      }
+                      alt={product.attributes.title}
+                    />
+                    <h3>{product.attributes.title}</h3>
+                    <span>
+                      <span>${product.attributes.price}</span>
+                    </span>
+                  </div>
+                </Link>
               ))}
             </div>
           </Productos>
@@ -50,6 +66,9 @@ function Category() {
 }
 
 const CategoryWrapper = styled.div`
+  a {
+    color: unset;
+  }
   padding: 0rem 1rem;
   display: grid;
   grid-template-columns: 20% 1fr;

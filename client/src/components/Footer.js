@@ -62,8 +62,7 @@ function Footer() {
           </Logo>
 
           <div>
-            Desarrollado por
-            <a href='https://www.linkedin.com/in/martinmorici/'>
+            Desarrollado por <a href='https://www.linkedin.com/in/martinmorici/'>
               Martín Morici
             </a>
           </div>
@@ -126,6 +125,7 @@ const FinalFooter = styled.div`
   justify-content: space-between;
   align-items: center;
   color: white;
+  padding: 0rem 1rem;
   a {
     text-decoration: underline;
     color: white;
