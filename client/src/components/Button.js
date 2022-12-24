@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import EastIcon from '@mui/icons-material/East';
 
-function Button({ texto, position }) {
+function Button({ texto, position, width, icon }) {
   return (
     <BtnWrapper>
       <Btn className={`${position} `}>

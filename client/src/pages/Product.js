@@ -141,6 +141,9 @@ const ContainerProduct = styled.div`
   display: flex;
   gap: 2rem;
   margin: 0rem 1rem;
+  @media (max-width:675px) {
+    flex-direction: column;
+  }
 `;
 const ContainerImgs = styled.section`
   display: flex;
@@ -163,9 +166,32 @@ const ContainerImgs = styled.section`
     width: 64%;
     object-fit: cover;
   }
+  @media (max-width:675px) {
+    justify-content: center;
+  }
+  @media (max-width:400px) {
+    flex-direction: column-reverse;
+    div{
+      flex-direction: row;
+      flex-wrap: wrap;
+      order: -1;
+      img{
+        width: 25%;
+        height: auto;
+      }
+    }
+    .imgGrande{
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
 `;
 const ContainerInfo = styled.section`
   width: 50%;
+  @media (max-width:675px) {
+    width: 100%;
+  }
   .price {
     display: block;
     margin: 2rem 0rem;

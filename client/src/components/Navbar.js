@@ -1,47 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import BrightnessHighIcon from '@mui/icons-material/BrightnessHigh';
+import Cart from './Cart';
 
 function Navbar() {
+  const [toggleCart, setToggleCart] = useState(false)
+
   return (
-    <Header>
-      <Container>
-        <HeaderContainer>
-          <Link to={'/'}>
-            <Logo>
-              <BrightnessHighIcon />
-              <h1>Arrival</h1>
-            </Logo>
-          </Link>
-          <Nav>
-            <ul>
-              <Link to={'/'}>
-                <li>Home</li>
-              </Link>
-              <Link to={'/category/men'}>
-                <li>Men</li>
-              </Link>
-              <Link to={'/category/women'}>
-                <li>Women</li>
-              </Link>
-              <Link to={'/category/accessories'}>
-                <li>Accessories</li>
-              </Link>
-            </ul>
-          </Nav>
-          <Icons>
-            <SearchIcon />
-            <div className='carrito'>
-              <LocalMallIcon />
-              <span>1</span>
-            </div>
-          </Icons>
-        </HeaderContainer>
-      </Container>
-    </Header>
+    <>
+      <Header>
+        <Container>
+          <HeaderContainer>
+            <Link to={'/'}>
+              <Logo>
+                <BrightnessHighIcon />
+                <h1>Arrival</h1>
+              </Logo>
+            </Link>
+            <Nav>
+              <ul>
+                <Link to={'/'}>
+                  <li>Home</li>
+                </Link>
+                <Link to={'/category/men'}>
+                  <li>Men</li>
+                </Link>
+                <Link to={'/category/women'}>
+                  <li>Women</li>
+                </Link>
+                <Link to={'/category/accessories'}>
+                  <li>Accessories</li>
+                </Link>
+              </ul>
+            </Nav>
+            <Icons>
+              <SearchIcon className='icons-svg' />
+              <div className='carrito'>
+                <LocalMallIcon className='icons-svg' onClick={() => setToggleCart(!toggleCart)} />
+                <span className='icons-span'>1</span>
+              </div>
+              {toggleCart && <Cart/>}
+            </Icons>
+          </HeaderContainer>
+        </Container>
+      </Header>
+   
+    </>
   );
 }
 
@@ -90,17 +97,17 @@ const Nav = styled.nav`
 `;
 
 const Icons = styled.div`
+  position: relative;
   display: flex;
   gap: 1rem;
-  line-height: 0;
-  svg {
+  .icons-svg {
     color: rgb(41, 45, 50);
   }
 
   .carrito {
     position: relative;
   }
-  span {
+  .icons-span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,7 +121,6 @@ const Icons = styled.div`
     position: absolute;
     top: -9px;
     right: -18px;
-    display: none;
   }
 `;
 
