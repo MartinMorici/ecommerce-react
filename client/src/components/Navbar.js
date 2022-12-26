@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import BrightnessHighIcon from '@mui/icons-material/BrightnessHigh';
 import Cart from './Cart';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleCart } from '../redux/features/cartSlice';
 
 function Navbar() {
-  const [toggleCart, setToggleCart] = useState(false)
+  const dispatch = useDispatch()
+  const {cartItems, isOpen} = useSelector((store) => store.cart);
+  const btnRef = useRef()
 
   return (
     <>
@@ -38,11 +42,11 @@ function Navbar() {
             </Nav>
             <Icons>
               <SearchIcon className='icons-svg' />
-              <div className='carrito'>
-                <LocalMallIcon className='icons-svg' onClick={() => setToggleCart(!toggleCart)} />
-                <span className='icons-span'>1</span>
+              <div className='carrito' ref={btnRef} onClick={() => dispatch(toggleCart(!isOpen))}>
+                <LocalMallIcon className='icons-svg' />
+                <span className='icons-span'>{cartItems.length}</span>
               </div>
-              {toggleCart && <Cart/>}
+              {isOpen && <Cart/>}
             </Icons>
           </HeaderContainer>
         </Container>
@@ -101,6 +105,7 @@ const Icons = styled.div`
   display: flex;
   gap: 1rem;
   .icons-svg {
+    cursor: pointer;
     color: rgb(41, 45, 50);
   }
 

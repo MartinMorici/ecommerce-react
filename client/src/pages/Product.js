@@ -2,27 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from '../components/Navbar';
-import { useGlobalContext } from '../context/Context';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../redux/features/cartSlice';
 
 function Product() {
+  const dispatch = useDispatch();
   const [producto, setProducto] = useState();
   const [cantidad, setCantidad] = useState(1);
   const [selectedImg, setSelectedImg] = useState();
   const { id } = useParams();
-  const { products, isLoading } = useGlobalContext();
+  const {productos,loading} = useSelector((state) => state.productos)
   const idProd = parseInt(id);
 
   useEffect(() => {
-    const productoActual = products.find((product) => product.id === idProd);
+    const productoActual = productos.find((product) => product.id === idProd);
     setProducto(productoActual);
     setSelectedImg(
       process.env.REACT_APP_UPLOAD_URL +
         productoActual?.attributes.img.data.attributes?.url
     );
-    console.log(productoActual);
-  }, [isLoading]);
+  }, [loading]);
 
+  
   const img1 = process.env.REACT_APP_UPLOAD_URL +
   producto?.attributes.img.data.attributes?.url;
   const img2 = process.env.REACT_APP_UPLOAD_URL +
@@ -32,12 +34,22 @@ function Product() {
     img3= process.env.REACT_APP_UPLOAD_URL +
     producto?.attributes.img3.data[0]?.attributes.url
   } 
-
+  const addToCartHandler = () => {
+    dispatch(addToCart({
+      id: producto.id,
+      title: producto?.attributes.title,
+      img: img1,
+      price: producto?.attributes.price,
+      desc: producto?.attributes.desc,
+      cant: cantidad
+    }))
+  }
+  
 
   return (
     <ProductWrapper>
       <Container>
-        {!isLoading && (
+        {!loading && (
           <ContainerProduct>
             <ContainerImgs>
               <div>
@@ -96,7 +108,7 @@ function Product() {
                 </button>
               </div>
 
-              <button className='addToCart'>
+              <button className='addToCart' onClick={addToCartHandler}>
                 <ShoppingCartIcon></ShoppingCartIcon>
                 ADD TO CART
               </button>

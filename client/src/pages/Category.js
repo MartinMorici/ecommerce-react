@@ -3,26 +3,25 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from '../components/Navbar';
-import { useGlobalContext } from '../context/Context';
-
+import { useSelector } from 'react-redux';
 function Category() {
   const { id } = useParams();
-  const { products, isLoading } = useGlobalContext();
+  const {productos,loading} = useSelector((state) => state.productos)
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    const productos = products.filter(
+    const productosFiltrados = productos.filter(
       (product) =>
         id === product.attributes?.categories?.data[0]?.attributes?.title
     );
-    setFilteredProducts(productos);
-  }, [isLoading, id, products]);
+    setFilteredProducts(productosFiltrados);
+  }, [loading, id, productos]);
 
   return (
     <main>
       <Container>
         <CategoryWrapper>
-          <Filtros products={products} id={id}></Filtros>
+          <Filtros products={productos} id={id}></Filtros>
           <Productos>
             <img
               className='banner-category'
