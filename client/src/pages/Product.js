@@ -11,6 +11,7 @@ function Product() {
   const [producto, setProducto] = useState();
   const [cantidad, setCantidad] = useState(1);
   const [selectedImg, setSelectedImg] = useState();
+  const [addedToCart, setAddedToCart] = useState(false)
   const { id } = useParams();
   const {productos,loading} = useSelector((state) => state.productos)
   const idProd = parseInt(id);
@@ -25,6 +26,16 @@ function Product() {
     );
   }, [loading]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAddedToCart(false)
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [addedToCart])
+  
   
   const img1 = process.env.REACT_APP_UPLOAD_URL +
   producto?.attributes.img.data.attributes?.url;
@@ -36,6 +47,7 @@ function Product() {
     producto?.attributes.img3.data[0]?.attributes.url
   } 
   const addToCartHandler = () => {
+    setAddedToCart(true);
     dispatch(addToCart({
       id: producto.id,
       title: producto?.attributes.title,
@@ -109,10 +121,13 @@ function Product() {
                 </button>
               </div>
 
-              <button className='addToCart' onClick={addToCartHandler}>
-                <ShoppingCartIcon></ShoppingCartIcon>
-                ADD TO CART
-              </button>
+              <div className='boton'>
+                <button className='addToCart' onClick={addToCartHandler}>
+                  <ShoppingCartIcon></ShoppingCartIcon>
+                  ADD TO CART
+                </button>
+                {addedToCart && <span className='added'>Item added to cart!</span>}
+              </div>
 
               <div className='moreInfo'>
                 {producto?.attributes.fit && (
@@ -234,7 +249,11 @@ const ContainerInfo = styled.section`
       outline: none;
     }
   }
+  .boton{
+    position: relative;
+  }
   .addToCart {
+    cursor: pointer;
     display: flex;
     gap: 0.8rem;
     justify-content: center;
@@ -244,10 +263,22 @@ const ContainerInfo = styled.section`
     outline: none;
     padding: 0.5rem 0rem;
     font-size: 13px;
+    margin-bottom: 1.5rem;
     font-family: 'Open Sans', sans-serif;
     color: white;
     background-color: #151a1e;
-    margin-bottom: 1.5rem;
+    transition: .2s;
+    :active{
+      transform: scale(1.1);
+      transition: .2s;
+
+    }
+  }
+  .added{
+    display: block;
+    position: absolute;
+    bottom: -30px;
+    color: green;
   }
 
   .moreInfo {

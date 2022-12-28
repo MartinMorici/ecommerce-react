@@ -5,8 +5,6 @@ function Filtros({
   products,
   id,
   productosFiltrados,
-  loading,
-  setFilteredProducts,
   setFiltered
 }) {
 

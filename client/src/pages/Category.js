@@ -26,7 +26,7 @@ function Category() {
     <main>
       <Container>
         <CategoryWrapper>
-          <Filtros products={productos} productosFiltrados={filteredProducts} setFilteredProducts={setFilteredProducts} setFiltered={setFiltered} loading={loading} id={id}></Filtros>
+          <Filtros products={productos} productosFiltrados={filteredProducts} setFiltered={setFiltered} loading={loading} id={id}></Filtros>
           <Productos>
             <img
               className='banner-category'

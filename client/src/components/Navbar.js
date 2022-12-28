@@ -1,17 +1,26 @@
-import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import BrightnessHighIcon from '@mui/icons-material/BrightnessHigh';
 import Cart from './Cart';
 import { useSelector, useDispatch } from 'react-redux';
+import { Twirl as Hamburger } from 'hamburger-react';
+
 import { toggleCart } from '../redux/features/cartSlice';
 
 function Navbar() {
-  const dispatch = useDispatch()
-  const {cartItems, isOpen} = useSelector((store) => store.cart);
-  const btnRef = useRef()
+  const dispatch = useDispatch();
+  const { cartItems, isOpen } = useSelector((store) => store.cart);
+  const [openNav, setOpenNav] = useState(false)
+  const btnRef = useRef();
+  const location = useLocation();
+  
+  useEffect(() => {
+    setOpenNav(false)
+  }, [location])
+  
 
   return (
     <>
@@ -40,18 +49,39 @@ function Navbar() {
                 </Link>
               </ul>
             </Nav>
-            <Icons>
-              <SearchIcon className='icons-svg' />
-              <div className='carrito' ref={btnRef} onClick={() => dispatch(toggleCart(!isOpen))}>
+            <Icons className={`${openNav ? 'white' : ''}`} >
+              {/* <SearchIcon className='icons-svg' /> */}
+              <div
+                className={`carrito`}
+                ref={btnRef}
+                onClick={() => dispatch(toggleCart(!isOpen))}
+              >
                 <LocalMallIcon className='icons-svg' />
                 <span className='icons-span'>{cartItems.length}</span>
               </div>
-              {isOpen && <Cart/>}
+              {isOpen && <Cart />}
+              <Hamburger toggled={openNav} toggle={setOpenNav} size={23} hideOutline={false} />
             </Icons>
           </HeaderContainer>
         </Container>
+
+          <NavResponsive className={openNav ? 'active' : ''} >
+            <ul>
+              <Link to={'/'}>
+                <li>Home</li>
+              </Link>
+              <Link to={'/category/men'}>
+                <li>Men</li>
+              </Link>
+              <Link to={'/category/women'}>
+                <li>Women</li>
+              </Link>
+              <Link to={'/category/accessories'}>
+                <li>Accessories</li>
+              </Link>
+            </ul>
+          </NavResponsive>
       </Header>
-   
     </>
   );
 }
@@ -59,6 +89,45 @@ function Navbar() {
 const Header = styled.header`
   font-family: 'Open Sans', sans-serif;
   padding: 1.5rem 1rem;
+  .active{
+    transform:translateX(0%);
+    transition: 0.5s ;
+  }
+  .white{
+    color: white;
+    .hamburguer-react{
+      color: white;
+    }
+  }
+`;
+const NavResponsive = styled.nav`
+display: flex;
+justify-content: center;
+align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
+  transform: translateX(101%);
+  background-color: #151a1e;
+  transition: 1s;
+  ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+  ul li {
+    color: white;
+    list-style: none;
+    padding: 0 1.3rem;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
+ 
 `;
 
 export const Container = styled.div`
@@ -98,11 +167,15 @@ const Nav = styled.nav`
     color: rgb(87, 85, 85);
     letter-spacing: 0.5px;
   }
+  @media (max-width: 690px) {
+    display: none;
+  }
 `;
 
 const Icons = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   gap: 1rem;
   .icons-svg {
     cursor: pointer;
@@ -126,6 +199,19 @@ const Icons = styled.div`
     position: absolute;
     top: -9px;
     right: -18px;
+  }
+  .hamburger-react {
+    display: none;
+    z-index: 3;
+  }
+  @media (max-width: 690px) {
+    .hamburger-react {
+      position: fixed;
+      display: block;
+      margin-left: 1rem;
+    }
+  }
+  @media (max-width: 400px) {
   }
 `;
 
