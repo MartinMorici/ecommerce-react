@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button';
-
 function Hero() {
   return (
     <ContainerHero>
@@ -17,7 +17,7 @@ function Hero() {
             trends that make you look <br className='brHero' />
             even cooler.
           </p>
-          <Button texto='Explore More' />
+          <a href='#explore'><Button texto='Explore More' /></a>
         </div>
         <img className='img-hero' src='../hero-section.png' alt='' />
       </HeroWrapper>

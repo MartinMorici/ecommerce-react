@@ -16,6 +16,7 @@ function Product() {
   const idProd = parseInt(id);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const productoActual = productos.find((product) => product.id === idProd);
     setProducto(productoActual);
     setSelectedImg(

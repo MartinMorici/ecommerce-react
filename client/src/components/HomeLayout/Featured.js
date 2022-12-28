@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Container } from '../Navbar';
 import Button from '../Button';
 import Barras from './Barras';
+import { Link } from 'react-router-dom';
 
 function Featured({featured}) {
   return (
@@ -23,7 +24,7 @@ function Featured({featured}) {
               <img src={process.env.REACT_APP_UPLOAD_URL+product.attributes.img.data.attributes.url} alt='' />
               <Price>
                 <span>${product.attributes.price}</span>
-                <Button texto={'BUY NOW'} />
+                <Link to={`./product/${product.id}`}><Button texto={'BUY NOW'} /></Link>
               </Price>
             </div>
           ))

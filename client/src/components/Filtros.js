@@ -1,9 +1,18 @@
-import React, {useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-function Filtros({ products, id }) {
-  const [maxPrice, setMaxPrice] = useState(500);
+function Filtros({
+  products,
+  id,
+  productosFiltrados,
+  loading,
+  setFilteredProducts,
+  setFiltered
+}) {
+
+  const [maxPrice, setMaxPrice] = useState(300);
   const [sort, setSort] = useState(null);
+  const [selectedCat, setSelectedCat] = useState([]);
 
   const cat = products.filter(
     (product) =>
@@ -18,14 +27,54 @@ function Filtros({ products, id }) {
     }
   }
 
+  const handleChange = (e) => {
+    const category = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setSelectedCat([...selectedCat, category]);
+    } else {
+      setSelectedCat(selectedCat.filter((item) => item !== category));
+    }
+  };
+
+  useEffect(() => {
+    let prods = [];
+
+    prods = productosFiltrados.filter((item) =>
+      selectedCat.includes(
+        item.attributes?.sub_categories?.data[0]?.attributes?.title
+      )
+    );
+    if (selectedCat.length < 1) {
+      prods = productosFiltrados;
+    }
+    
+    prods = prods.filter(prod => prod.attributes.price < maxPrice)
+
+    if (sort) {
+     sort === 'asc' ? prods = prods.sort(function(a, b) {
+        return a.attributes.price - b.attributes.price;
+      }) : prods = prods.sort(function(a, b) {
+        return b.attributes.price - a.attributes.price;
+      })
+    }
+
+    setFiltered(prods)
+  }, [selectedCat, maxPrice, sort]);
+
   return (
     <FiltrosWrapper>
       <div className='flexItem'>
         <h2>Categories</h2>
         {categories.map((cat) => (
           <div key={cat}>
-            <input type='checkbox' id={cat} value={cat} />
-            <label htmlFor='1'>{cat}</label>
+            <input
+              type='checkbox'
+              id={cat}
+              value={cat}
+              onChange={handleChange}
+            />
+            <label htmlFor={cat}>{cat}</label>
           </div>
         ))}
       </div>
@@ -36,7 +85,7 @@ function Filtros({ products, id }) {
           <input
             type='range'
             min={0}
-            max={500}
+            max={300}
             onChange={(e) => setMaxPrice(e.target.value)}
           />
           <span>{maxPrice}</span>

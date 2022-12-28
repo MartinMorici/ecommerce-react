@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { Container } from '../Navbar';
 import Barras from './Barras';
 import Button from '../Button';
+import { Link } from 'react-router-dom';
 
 function Shop() {
   return (
-    <ShopContainer>
+    <ShopContainer id='explore'>
       <Barras derecha={'derecha'} rotado={'rotado'} />
       <Container>
         <FlexContainer>
@@ -22,12 +23,16 @@ function Shop() {
 
           <article>
             <img src='./shop-men.jpg' alt='' />
-            <Button texto={'Men'} position={'bottom'} />
+            <Link to={'category/men'}>
+              <Button texto={'Men'} position={'bottom'} />
+            </Link>
           </article>
 
           <article>
             <img src='./shop-women.jpg' alt='' />
-            <Button texto={'Women'} position={'bottom'} />
+            <Link to={'category/women'}>
+              <Button texto={'Women'} position={'bottom'} />
+            </Link>
           </article>
         </FlexContainer>
       </Container>

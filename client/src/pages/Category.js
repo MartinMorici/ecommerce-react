@@ -4,24 +4,29 @@ import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from '../components/Navbar';
 import { useSelector } from 'react-redux';
+
 function Category() {
   const { id } = useParams();
   const {productos,loading} = useSelector((state) => state.productos)
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filtered, setFiltered] = useState([])
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    setFiltered([])
     const productosFiltrados = productos.filter(
       (product) =>
-        id === product.attributes?.categories?.data[0]?.attributes?.title
-    );
-    setFilteredProducts(productosFiltrados);
+      id === product.attributes?.categories?.data[0]?.attributes?.title
+      );
+      setFilteredProducts(productosFiltrados);
+
   }, [loading, id, productos]);
 
   return (
     <main>
       <Container>
         <CategoryWrapper>
-          <Filtros products={productos} id={id}></Filtros>
+          <Filtros products={productos} productosFiltrados={filteredProducts} setFilteredProducts={setFilteredProducts} setFiltered={setFiltered} loading={loading} id={id}></Filtros>
           <Productos>
             <img
               className='banner-category'
@@ -29,7 +34,8 @@ function Category() {
               alt=''
             />
             <div className='productos'>
-              {filteredProducts.map((product) => (
+              {
+              (filtered.length > 0 ? filtered : filteredProducts).map((product) => (
                 <Link key={product.id} to={`/product/${product.id}`}>
                   <div >
                     <img
@@ -55,7 +61,8 @@ function Category() {
                     </span>
                   </div>
                 </Link>
-              ))}
+              ))
+              }
             </div>
           </Productos>
         </CategoryWrapper>

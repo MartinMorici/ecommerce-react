@@ -1,20 +1,17 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Outlet
+  Outlet,
 } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Category from './pages/Category';
-import './App.css'
-import { AppProvider } from './context/Context';
+import './App.css';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getProds } from './redux/features/prodSlice';
-
-
 const SharedLayout = () => {
   return (
     <div className='App'>
@@ -24,7 +21,6 @@ const SharedLayout = () => {
     </div>
   );
 };
-
 
 const router = createBrowserRouter([
   {
@@ -52,15 +48,11 @@ function App() {
 
   useEffect(() => {
     dispatch(getProds());
-  }, [])
-
-  
+  }, []);
 
   return (
     <div className='App'>
-      <AppProvider>
-        <RouterProvider router={router} />
-      </AppProvider>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }
