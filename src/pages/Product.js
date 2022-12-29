@@ -23,7 +23,6 @@ function Product() {
     setSelectedImg(
     productoActual.img
     );
-    console.log(productoActual);
   }, []);
 
   useEffect(() => {

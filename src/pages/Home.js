@@ -8,7 +8,6 @@ import Partners from '../components/HomeLayout/Partners';
 
 function Home() {
   const {featured} = useSelector((state) => state.productos)
-  console.log(featured);
   return (
     <main>
       <Hero />
