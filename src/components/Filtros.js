@@ -55,6 +55,12 @@ function Filtros({ products, id, productosFiltrados, setFiltered }) {
     setCat(categories);
     setFiltered(prods);
   }, [selectedCat, maxPrice, sort, location]);
+  
+  useEffect(() => {
+    setMaxPrice(300)
+
+  }, [location])
+  
 
   return (
     <FiltrosWrapper>
@@ -80,6 +86,7 @@ function Filtros({ products, id, productosFiltrados, setFiltered }) {
             type='range'
             min={0}
             max={300}
+            value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
           />
           <span>{maxPrice}</span>

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import BrightnessHighIcon from '@mui/icons-material/BrightnessHigh';
 import Cart from './Cart';
@@ -50,7 +49,6 @@ function Navbar() {
               </ul>
             </Nav>
             <Icons className={`${openNav ? 'white' : ''}`} >
-              {/* <SearchIcon className='icons-svg' /> */}
               <div
                 className={`carrito`}
                 ref={btnRef}
@@ -107,6 +105,8 @@ align-items: center;
   position: fixed;
   top: 0;
   right: 0;
+  left: 0;
+  bottom: 0;
   height: 100vh;
   width: 100%;
   z-index: 2;

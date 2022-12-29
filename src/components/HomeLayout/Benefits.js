@@ -81,6 +81,10 @@ const BenefitsContainer = styled.section`
   @media (max-width: 880px) {
     margin: 3rem 0rem 10rem 0rem;
   }
+  @media (max-width: 650px) {
+    margin: 6rem 0rem 10rem 0rem;
+  }
+
 `;
 const Texto = styled.div`
   display: flex;
@@ -129,6 +133,11 @@ const Texto = styled.div`
       br {
         display: none;
       }
+    }
+  }
+  @media (max-width: 650px) {
+    .oculto .contenedorBarras{
+      width: 60vw;
     }
   }
 `;

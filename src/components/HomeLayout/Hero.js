@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button';
 function Hero() {
@@ -82,8 +81,8 @@ const HeroWrapper = styled.section`
     }
   }
   @media (max-width: 850px) {
-    flex-direction: column;
-    margin-top: 5rem;
+    flex-direction: column-reverse;
+    margin-top: 1rem;
     margin-bottom: 3rem;
     gap: 2rem;
     height: auto;

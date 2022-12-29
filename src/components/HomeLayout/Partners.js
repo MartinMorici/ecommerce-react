@@ -43,6 +43,9 @@ const PartnersTitle = styled.div`
     margin: 2rem 0rem;
     text-align: center;
   }
+  @media (max-width: 450px) {
+    margin: 4rem 0rem;
+  }
   h2 {
     font-size: 60px;
     font-weight: 500;
@@ -87,7 +90,7 @@ const PartnersContainer = styled.div`
       width: 20%;
     }
     img {
-      width: 15%;
+      width: 18%;
     }
   }
 
