@@ -18,7 +18,7 @@ function Hero() {
           </p>
           <a href='#explore'><Button texto='Explore More' /></a>
         </div>
-        <img className='img-hero' src='../hero-section.png' alt='' />
+        <img className='img-hero' src='../hero-section.webp' alt='' />
       </HeroWrapper>
     </ContainerHero>
   );
