@@ -127,6 +127,7 @@ align-items: center;
     font-size: 20px;
     letter-spacing: 0.5px;
   }
+
  
 `;
 
@@ -159,6 +160,7 @@ const Logo = styled.div`
 `;
 
 const Nav = styled.nav`
+  transition:125ms;
   ul li {
     display: inline-block;
     list-style: none;
@@ -166,6 +168,12 @@ const Nav = styled.nav`
     font-weight: 500;
     color: rgb(87, 85, 85);
     letter-spacing: 0.5px;
+    transition:125ms;
+  }
+  li:hover{
+    color: black;
+    transform: scale(1.1);
+    transition:125ms;
   }
   @media (max-width: 690px) {
     display: none;
